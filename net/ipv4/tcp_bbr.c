@@ -811,6 +811,14 @@ static u32 bbr_sndbuf_expand(struct sock *sk)
  */
 static u32 bbr_undo_cwnd(struct sock *sk)
 {
+<<<<<<< HEAD
+=======
+	struct bbr *bbr = inet_csk_ca(sk);
+
+	bbr->full_bw = 0;   /* spurious slow-down; reset full pipe detection */
+	bbr->full_bw_cnt = 0;
+	bbr_reset_lt_bw_sampling(sk);
+>>>>>>> 8824b2d7abfb... tcp_bbr: reset long-term bandwidth sampling on loss recovery undo
 	return tcp_sk(sk)->snd_cwnd;
 }
 
